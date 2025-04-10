@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2025-04-10 05:11:59 by Eclipse SUMO sumo Version 1.19.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="../networks/ingolstadt_custom/ingolstadt_custom.net.xml"/>
+        <route-files value="../networks/ingolstadt_custom/route.rou.xml"/>
+        <additional-files value="../networks/ingolstadt_custom/det.add.xml"/>
+    </input>
+
+    <output>
+        <fcd-output value="../networks/ingolstadt_custom/fcd.xml"/>
+        <summary-output value="../networks/ingolstadt_custom/summary.xml"/>
+        <tripinfo-output value="../records/ing_rand_43/SUMO_output/detailed_sumo_stats_2608.xml"/>
+        <statistic-output value="../records/ing_rand_43/SUMO_output/sumo_stats_2608.xml"/>
+    </output>
+
+    <processing>
+        <time-to-teleport value="-1"/>
+    </processing>
+
+    <report>
+        <no-step-log value="true"/>
+    </report>
+
+    <random_number>
+        <seed value="43"/>
+    </random_number>
+
+</configuration>
+-->
+
+<tripinfos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/tripinfo_file.xsd">
+</tripinfos>
