@@ -44,11 +44,11 @@ I prepared commands for you, according to the task distribution. I made it for y
 
 ---
 ### Łukasz
-- `python3 scripts/baselines.py --conf 1_baseline --model random --net saint_arnoult --id sai_ran`
-- `python3 scripts/baselines.py --conf 1_baseline --model aon --net saint_arnoult --id sai_aon`
+- ~~python3 scripts/baselines.py --conf 1_baseline --model random --net saint_arnoult --id sai_ran~~
+- ~~python3 scripts/baselines.py --conf 1_baseline --model aon --net saint_arnoult --id sai_aon~~
 
-- `python3 scripts/baselines.py --conf 1_baseline --model random --net provins --id pro_ran`
-- `python3 scripts/baselines.py --conf 1_baseline --model aon --net provins --id pro_aon`
+- ~~python3 scripts/baselines.py --conf 1_baseline --model random --net provins --id pro_ran~~
+- ~~python3 scripts/baselines.py --conf 1_baseline --model aon --net provins --id pro_aon~~
 
 - `python3 scripts/mappo_torchrl.py --conf 1_mappo --torch-seed 0 --net saint_arnoult --id sai_map_0`
 - `python3 scripts/mappo_torchrl.py --conf 1_mappo --torch-seed 1 --net saint_arnoult --id sai_map_1`
@@ -56,31 +56,35 @@ I prepared commands for you, according to the task distribution. I made it for y
 
 ---
 ### Michał
-- `python3 scripts/baselines.py --conf 1_baseline --model random --net ingolstadt_custom --id ing_ran`
-- `python3 scripts/baselines.py --conf 1_baseline --model aon --net ingolstadt_custom --id ing_aon`
+- ~~python3 scripts/baselines.py --conf 1_baseline --model random --net ingolstadt_custom --id ing_ran~~
+- ~~python3 scripts/baselines.py --conf 1_baseline --model aon --net ingolstadt_custom --id ing_aon~~
 
-- `python3 scripts/ippo_torchrl.py --conf 1_ippo --torch-seed 0 --net saint_arnoult --id sai_ipp_0`
-- `python3 scripts/ippo_torchrl.py --conf 1_ippo --torch-seed 1 --net saint_arnoult --id sai_ipp_1`
+- ~~python3 scripts/ippo_torchrl.py --conf 1_ippo --torch-seed 0 --net saint_arnoult --id sai_ipp_0~~
+- ~~python3 scripts/ippo_torchrl.py --conf 1_ippo --torch-seed 1 --net saint_arnoult --id sai_ipp_1~~
 - `python3 scripts/ippo_torchrl.py --conf 1_ippo --torch-seed 2 --net saint_arnoult --id sai_ipp_2`
 
 - `python3 scripts/iql_torchrl.py --conf 1_iql --torch-seed 0 --net saint_arnoult --id sai_iql_0`
 - `python3 scripts/iql_torchrl.py --conf 1_iql --torch-seed 1 --net saint_arnoult --id sai_iql_1`
 - `python3 scripts/iql_torchrl.py --conf 1_iql --torch-seed 2 --net saint_arnoult --id sai_iql_2`
 
----
-### Onur
 - `python3 scripts/qmix_torchrl.py --conf 1_qmix --torch-seed 0 --net saint_arnoult --id sai_qmi_0`
 - `python3 scripts/qmix_torchrl.py --conf 1_qmix --torch-seed 1 --net saint_arnoult --id sai_qmi_1`
 - `python3 scripts/qmix_torchrl.py --conf 1_qmix --torch-seed 2 --net saint_arnoult --id sai_qmi_2`
 
-- `python3 scripts/mappo_torchrl.py --conf 1_mappo --torch-seed 0 --net provins --id pro_map_0`
-- `python3 scripts/mappo_torchrl.py --conf 1_mappo --torch-seed 1 --net provins --id pro_map_1`
-- `python3 scripts/mappo_torchrl.py --conf 1_mappo --torch-seed 2 --net provins --id pro_map_2`
+---
+### Onur
+-  ~~python3 scripts/mappo_torchrl.py --conf 1_mappo --torch-seed 0 --net provins --id pro_map_0~~
+-  ~~python3 scripts/mappo_torchrl.py --conf 1_mappo --torch-seed 1 --net provins --id pro_map_1~~
+-  ~~python3 scripts/mappo_torchrl.py --conf 1_mappo --torch-seed 2 --net provins --id pro_map_2~~
 
 - `python3 scripts/qmix_torchrl.py --conf 1_qmix --torch-seed 0 --net provins --id pro_qmi_0`
 - `python3 scripts/qmix_torchrl.py --conf 1_qmix --torch-seed 1 --net provins --id pro_qmi_1`
 - `python3 scripts/qmix_torchrl.py --conf 1_qmix --torch-seed 2 --net provins --id pro_qmi_2`
 
+- `python3 scripts/qmix_torchrl.py --conf 1_qmix --torch-seed 0 --net ingolstadt_custom --id ing_qmi_0`
+- `python3 scripts/qmix_torchrl.py --conf 1_qmix --torch-seed 1 --net ingolstadt_custom --id ing_qmi_1`
+- `python3 scripts/qmix_torchrl.py --conf 1_qmix --torch-seed 2 --net ingolstadt_custom --id ing_qmi_2`
+  
 ---
 ### Zoltán
 - `python3 scripts/ippo_torchrl.py --conf 1_ippo --torch-seed 0 --net ingolstadt_custom --id ing_ipp_0`
@@ -94,10 +98,6 @@ I prepared commands for you, according to the task distribution. I made it for y
 - `python3 scripts/mappo_torchrl.py --conf 1_mappo --torch-seed 0 --net ingolstadt_custom --id ing_map_0`
 - `python3 scripts/mappo_torchrl.py --conf 1_mappo --torch-seed 1 --net ingolstadt_custom --id ing_map_1`
 - `python3 scripts/mappo_torchrl.py --conf 1_mappo --torch-seed 2 --net ingolstadt_custom --id ing_map_2`
-
-- `python3 scripts/qmix_torchrl.py --conf 1_qmix --torch-seed 0 --net ingolstadt_custom --id ing_qmi_0`
-- `python3 scripts/qmix_torchrl.py --conf 1_qmix --torch-seed 1 --net ingolstadt_custom --id ing_qmi_1`
-- `python3 scripts/qmix_torchrl.py --conf 1_qmix --torch-seed 2 --net ingolstadt_custom --id ing_qmi_2`
 
 ---
 
