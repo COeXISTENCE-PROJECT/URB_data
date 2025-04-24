@@ -69,7 +69,7 @@ I prepared commands for you, according to the task distribution. I made it for y
 
 - `python3 scripts/qmix_torchrl.py --conf 1_qmix --torch-seed 0 --net saint_arnoult --id sai_qmi_0`
 - `python3 scripts/qmix_torchrl.py --conf 1_qmix --torch-seed 1 --net saint_arnoult --id sai_qmi_1`
-- `python3 scripts/qmix_torchrl.py --conf 1_qmix --torch-seed 2 --net saint_arnoult --id sai_qmi_2`
+- ~~python3 scripts/qmix_torchrl.py --conf 1_qmix --torch-seed 2 --net saint_arnoult --id sai_qmi_2~~
 
 ---
 ### Onur
