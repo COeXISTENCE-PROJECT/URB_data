@@ -333,7 +333,7 @@ def extract_KPIs(path, config):
     mean_TT_all = mean_TT_all / (len(CAV_ids) + len(human_ids))
     # extract KPIs of the experiment
 
-    avg_route_length = np.mean(testing_frames["vehicleTripStatistics_routeLength"])
+    avg_mileage = np.mean(testing_frames["vehicleTripStatistics_routeLength"])
 
     avg_speed = np.mean(testing_frames["vehicleTripStatistics_speed"])
 
@@ -365,7 +365,7 @@ def extract_KPIs(path, config):
     KPIs["Effect_of_remaining"] = t_HDV_pre / t_HDV_post
     KPIs["mean_TT_all"] = mean_TT_all
     KPIs["avg_speed"] = avg_speed
-    KPIs["avg_route_length"] = avg_route_length
+    KPIs["avg_mileage"] = avg_mileage
     KPIs["mean_human_diff"] = mean_human_diff
     KPIs["mean_CAV_diff"] = mean_CAV_diff
 
