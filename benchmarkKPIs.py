@@ -469,7 +469,6 @@ def clear_SUMO_files(path, ep_path, remove_additional_files=False):
                     # print(f"Removed file: {file}")
 
 
-mock_path = "records/gar_aon/gar_aon_43"
 records_folder = f"./records"
 
 if __name__ == "__main__":
@@ -493,7 +492,7 @@ if __name__ == "__main__":
     KPIs, vector_KPIs = extract_KPIs(
         os.path.join(data_path, "combined_data.csv"),
         {
-            "human_learning_episodes": 500,
+            "human_learning_episodes": 500, # in the config file, check BEFORE running the experiment
             "training_eps": 1000,
             "test_eps": 100,
         },
