@@ -95,9 +95,9 @@ I prepared commands for you, according to the task distribution. I made it for y
 - ~~python3 scripts/ippo_torchrl.py --conf 1_ippo --torch-seed 1 --net ingolstadt_custom --id ing_ipp_1~~
 - ~~python3 scripts/ippo_torchrl.py --conf 1_ippo --torch-seed 2 --net ingolstadt_custom --id ing_ipp_2~~
 
-- `python3 scripts/iql_torchrl.py --conf 1_iql --torch-seed 0 --net ingolstadt_custom --id ing_iql_0`
-- `python3 scripts/iql_torchrl.py --conf 1_iql --torch-seed 1 --net ingolstadt_custom --id ing_iql_1`
-- `python3 scripts/iql_torchrl.py --conf 1_iql --torch-seed 2 --net ingolstadt_custom --id ing_iql_2`
+- ~~python3 scripts/iql_torchrl.py --conf 1_iql --torch-seed 0 --net ingolstadt_custom --id ing_iql_0~~
+- ~~python3 scripts/iql_torchrl.py --conf 1_iql --torch-seed 1 --net ingolstadt_custom --id ing_iql_1~~
+- ~~python3 scripts/iql_torchrl.py --conf 1_iql --torch-seed 2 --net ingolstadt_custom --id ing_iql_2~~
 
 ---
 
