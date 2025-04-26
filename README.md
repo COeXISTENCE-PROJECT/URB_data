@@ -81,6 +81,10 @@ I prepared commands for you, according to the task distribution. I made it for y
 - `python3 scripts/qmix_torchrl.py --conf 1_qmix --torch-seed 1 --net provins --id pro_qmi_1`
 - `python3 scripts/qmix_torchrl.py --conf 1_qmix --torch-seed 2 --net provins --id pro_qmi_2`
 
+- `python3 scripts/mappo_torchrl.py --conf 1_mappo --torch-seed 0 --net ingolstadt_custom --id ing_map_0`
+- `python3 scripts/mappo_torchrl.py --conf 1_mappo --torch-seed 1 --net ingolstadt_custom --id ing_map_1`
+- `python3 scripts/mappo_torchrl.py --conf 1_mappo --torch-seed 2 --net ingolstadt_custom --id ing_map_2`
+
 - ~~python3 scripts/qmix_torchrl.py --conf 1_qmix --torch-seed 0 --net ingolstadt_custom --id ing_qmi_0~~
 - ~~python3 scripts/qmix_torchrl.py --conf 1_qmix --torch-seed 1 --net ingolstadt_custom --id ing_qmi_1~~
 - ~~python3 scripts/qmix_torchrl.py --conf 1_qmix --torch-seed 2 --net ingolstadt_custom --id ing_qmi_2~~
@@ -94,10 +98,6 @@ I prepared commands for you, according to the task distribution. I made it for y
 - `python3 scripts/iql_torchrl.py --conf 1_iql --torch-seed 0 --net ingolstadt_custom --id ing_iql_0`
 - `python3 scripts/iql_torchrl.py --conf 1_iql --torch-seed 1 --net ingolstadt_custom --id ing_iql_1`
 - `python3 scripts/iql_torchrl.py --conf 1_iql --torch-seed 2 --net ingolstadt_custom --id ing_iql_2`
-
-- `python3 scripts/mappo_torchrl.py --conf 1_mappo --torch-seed 0 --net ingolstadt_custom --id ing_map_0`
-- `python3 scripts/mappo_torchrl.py --conf 1_mappo --torch-seed 1 --net ingolstadt_custom --id ing_map_1`
-- `python3 scripts/mappo_torchrl.py --conf 1_mappo --torch-seed 2 --net ingolstadt_custom --id ing_map_2`
 
 ---
 
