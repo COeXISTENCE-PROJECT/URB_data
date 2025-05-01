@@ -94,19 +94,19 @@
     <tr>
       <td rowspan="3" style="padding: 8px;">MAPPO</td>
       <td style="padding: 8px;">0</td>
-      <td><img src="results/ing_mapp_0/plots/travel_times.png" width="400"></td>
+      <td><img src="results/ing_map_0/plots/travel_times.png" width="400"></td>
       <td><img src="results/pro_map_0/plots/travel_times.png" width="400"></td>
       <td><img src="results/sai_map_0/plots/travel_times.png" width="400"></td>
     </tr>
     <tr>
       <td style="padding: 8px;">1</td>
-      <td><img src="results/ing_mapp_1/plots/travel_times.png" width="400"></td>
+      <td><img src="results/ing_map_1/plots/travel_times.png" width="400"></td>
       <td><img src="results/pro_map_1/plots/travel_times.png" width="400"></td>
       <td><img src="results/sai_map_1/plots/travel_times.png" width="400"></td>
     </tr>
     <tr>
       <td style="padding: 8px;">2</td>
-      <td><img src="results/ing_mapp_2/plots/travel_times.png" width="400"></td>
+      <td><img src="results/ing_map_2/plots/travel_times.png" width="400"></td>
       <td><img src="results/pro_map_2/plots/travel_times.png" width="400"></td>
       <td><img src="results/sai_map_2/plots/travel_times.png" width="400"></td>
     </tr>
