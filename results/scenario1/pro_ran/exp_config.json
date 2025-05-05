@@ -1,0 +1,20 @@
+{
+    "ratio_machines": 0.4,
+    "human_learning_episodes": 200,
+    "training_eps": 200,
+    "test_eps": 100,
+    "av_behavior": "selfish",
+    "smooth_by": 10,
+    "plot_choices": "basic",
+    "save_every": 5,
+    "human_model": "gawron",
+    "number_of_paths": 4,
+    "path_gen_beta": -5,
+    "num_samples": 10,
+    "network": "provins",
+    "env_seed": 42,
+    "config": "1_baseline",
+    "baseline_model": "random",
+    "num_agents": 523,
+    "num_machines": 209
+}
