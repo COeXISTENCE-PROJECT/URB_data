@@ -421,6 +421,20 @@ def extract_metrics(path, config):
         [total_time_lost[id] for id in CAV_ids]
     )
 
+    average_time_CAVs = after_mutation[
+        [f"agent_{id}_duration" for id in CAV_ids]
+    ].mean(axis=1)
+    average_time_humans = after_mutation[
+        [f"agent_{id}_duration" for id in human_ids]
+    ].mean(axis=1)
+
+    timeDiff = average_time_humans - average_time_CAVs
+    timeDiff = timeDiff.tolist()
+    isTimeDiffPositive = [1 if i > 0 else 0 for i in timeDiff]
+
+    winrate = np.mean(isTimeDiffPositive)
+
+
     metrics = {}
 
     metrics["t_pre"] = None if AV_only else t_pre
@@ -441,6 +455,7 @@ def extract_metrics(path, config):
     metrics["avg_time_lost"] = average_time_lost
     metrics["avg_human_time_lost"] = average_human_time_lost
     metrics["avg_CAV_time_lost"] = average_CAV_time_lost
+    metrics["winrate"] = winrate
 
     #metrics to dataframe
     metrics_df = pd.DataFrame([metrics])
@@ -633,12 +648,12 @@ if __name__ == "__main__":
         print(f"Extracted metrics")
 
     # save metrics to csv
-    metrics.to_csv(os.path.join(metrics_path, "Benchmarkmetrics.csv"), index=False)
-    vector_metrics.to_csv(os.path.join(metrics_path, "Vectormetrics.csv"), index=False)
+    metrics.to_csv(os.path.join(metrics_path, "BenchmarkMetrics.csv"), index=False)
+    vector_metrics.to_csv(os.path.join(metrics_path, "VectorMetrics.csv"), index=False)
     
     if verbose:
-        print(f"Saved metrics to {os.path.join(metrics_path, 'Benchmarkmetrics.csv')}")
-        print(f"Saved vector metrics to {os.path.join(metrics_path, 'Vectormetrics.csv')}")
+        print(f"Saved metrics to {os.path.join(metrics_path, 'BenchmarkMetrics.csv')}")
+        print(f"Saved vector metrics to {os.path.join(metrics_path, 'VectorMetrics.csv')}")
 
 
     # make plots of the vector metrics
