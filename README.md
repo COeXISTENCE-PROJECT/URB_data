@@ -106,21 +106,21 @@
     <tr>
       <td rowspan="3" style="padding: 8px;">Long training</td>
       <td style="padding: 8px;">0</td>
-      <td><img src="results/scenario1_long/ing_qmi_long2_0/plots/travel_times.png" width="400"></td>
-      <td><img src="results/scenario1_long/pro_qmi_long2_0/plots/travel_times.png" width="400"></td>
-      <td><img src="results/scenario1_long/sai_qmi_long_0/plots/travel_times.png" width="400"></td>
+      <td><img src="results/scenario1_long/ing_qm2_xl_0/plots/travel_times.png" width="400"></td>
+      <td><img src="results/scenario1_long/pro_qm2_xl_0/plots/travel_times.png" width="400"></td>
+      <td><img src="results/scenario1_long/sai_qmi_xl_0/plots/travel_times.png" width="400"></td>
     </tr>
     <tr>
       <td style="padding: 8px;">1</td>
-      <td><img src="results/scenario1_long/ing_qmi_long2_1/plots/travel_times.png" width="400"></td>
-      <td><img src="results/scenario1_long/pro_qmi_long2_1/plots/travel_times.png" width="400"></td>
-      <td><img src="results/scenario1_long/sai_qmi_long_1/plots/travel_times.png" width="400"></td>
+      <td><img src="results/scenario1_long/ing_qm2_xl_1/plots/travel_times.png" width="400"></td>
+      <td><img src="results/scenario1_long/pro_qm2_xl_1/plots/travel_times.png" width="400"></td>
+      <td><img src="results/scenario1_long/sai_qmi_xl_1/plots/travel_times.png" width="400"></td>
     </tr>
     <tr>
       <td style="padding: 8px;">2</td>
-      <td><img src="results/scenario1_long/ing_qmi_long2_2/plots/travel_times.png" width="400"></td>
-      <td><img src="results/scenario1_long/pro_qmi_long2_2/plots/travel_times.png" width="400"></td>
-      <td><img src="results/scenario1_long/sai_qmi_long_2/plots/travel_times.png" width="400"></td>
+      <td><img src="results/scenario1_long/ing_qm2_xl_2/plots/travel_times.png" width="400"></td>
+      <td><img src="results/scenario1_long/pro_qm2_xl_2/plots/travel_times.png" width="400"></td>
+      <td><img src="results/scenario1_long/sai_qmi_xl_2/plots/travel_times.png" width="400"></td>
     </tr>
   </tbody>
 </table>
