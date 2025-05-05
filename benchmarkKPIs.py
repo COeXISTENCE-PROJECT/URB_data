@@ -272,7 +272,6 @@ def add_benchmark_columns(df: pd.DataFrame, params: dict) -> pd.DataFrame:
     """
     Add benchmark columns to the DataFrame.
     """
-
     n_agents = df["vehicleTripStatistics_count"].values[0]
     
     new_columns = {}
@@ -332,6 +331,10 @@ def extract_KPIs(path, config):
 
     before_mutation = df[df["episode"] <= config["human_learning_episodes"]] # Human policy testing period
     before_mutation = before_mutation[before_mutation["episode"] > config["human_learning_episodes"] - 50] # Hardcoded human policy testing period
+    
+    AV_only = before_mutation.shape[0] == 0 # if there is no human learning period, we can calculate only part of the KPIs.
+    if verbose and AV_only:
+        print("AV only experiment, no human learning period found.")
 
     after_mutation = df[df["episode"] > config["human_learning_episodes"]] # Learning and testing period
 
@@ -342,7 +345,8 @@ def extract_KPIs(path, config):
     
     params = {"avg_times_pre": avg_times_pre}
 
-    before_mutation = add_benchmark_columns(before_mutation, params)
+    if not AV_only:
+        before_mutation = add_benchmark_columns(before_mutation, params)
     after_mutation = add_benchmark_columns(after_mutation, params)
     testing_frames = add_benchmark_columns(testing_frames, params)
 
@@ -352,20 +356,23 @@ def extract_KPIs(path, config):
 
     t_CAV /= len(CAV_ids)
 
-    t_HDV_post = 0
-    for id in human_ids:
-        t_HDV_post += testing_frames[f"agent_{id}_duration"].mean()
-    t_HDV_post /= len(human_ids)
+ 
 
-    t_HDV_pre = 0
-    for id in human_ids:
-        t_HDV_pre += before_mutation[f"agent_{id}_duration"].mean()
-    t_HDV_pre /= len(human_ids)
+    if not AV_only:
+        t_HDV_pre = 0
+        for id in human_ids:
+            t_HDV_pre += before_mutation[f"agent_{id}_duration"].mean()
+        t_HDV_pre /= len(human_ids)
 
-    t_pre = np.sum(
+        t_pre = np.sum(
         [before_mutation[f"agent_{id}_duration"].mean() for id in human_ids + CAV_ids]
-    )
-    t_pre = t_pre / (len(CAV_ids) + len(human_ids))
+        )
+        t_pre = t_pre / (len(CAV_ids) + len(human_ids))
+
+        t_HDV_post = 0
+        for id in human_ids:
+            t_HDV_post += testing_frames[f"agent_{id}_duration"].mean()
+        t_HDV_post /= len(human_ids)
 
     t_post = np.sum(
         [testing_frames[f"agent_{id}_duration"].mean() for id in human_ids + CAV_ids]
@@ -376,10 +383,12 @@ def extract_KPIs(path, config):
     t_sumo = t_sumo / (len(CAV_ids) + len(human_ids))
     # extract KPIs of the experiment
 
-    avg_mileage_pre = np.mean(before_mutation["vehicleTripStatistics_routeLength"])
+    if not AV_only:
+        avg_mileage_pre = np.mean(before_mutation["vehicleTripStatistics_routeLength"])
     avg_mileage_post = np.mean(testing_frames["vehicleTripStatistics_routeLength"])
 
-    avg_speed_pre = np.mean(before_mutation["vehicleTripStatistics_speed"])
+    if not AV_only:
+        avg_speed_pre = np.mean(before_mutation["vehicleTripStatistics_speed"])
     avg_speed_post = np.mean(testing_frames["vehicleTripStatistics_speed"])
     
     min_human_times = [np.min(after_mutation[f"agent_{id}_duration"]) for id in human_ids]
@@ -414,18 +423,18 @@ def extract_KPIs(path, config):
 
     KPIs = {}
 
-    KPIs["t_pre"] = t_pre
+    KPIs["t_pre"] = None if AV_only else t_pre
     KPIs["t_post"] = t_post
     KPIs["t_CAV"] = t_CAV
-    KPIs["t_HDV_pre"] = t_HDV_pre
-    KPIs["t_HDV_post"] = t_HDV_post
-    KPIs["CAV_advantage"] = t_HDV_post / t_CAV
-    KPIs["Effect_of_change"] = t_HDV_pre / t_CAV
-    KPIs["Effect_of_remaining"] = t_HDV_pre / t_HDV_post
+    KPIs["t_HDV_pre"] = None if AV_only else t_HDV_pre
+    KPIs["t_HDV_post"] = None if AV_only else t_HDV_post
+    KPIs["CAV_advantage"] = None if AV_only else t_HDV_post / t_CAV
+    KPIs["Effect_of_change"] = None if AV_only else t_HDV_pre / t_CAV
+    KPIs["Effect_of_remaining"] = None if AV_only else t_HDV_pre / t_HDV_post #!
     KPIs["diff_sumo_routerl"] = t_sumo - t_post
-    KPIs["avg_speed_pre"] = avg_speed_pre
+    KPIs["avg_speed_pre"] = None if AV_only else avg_speed_pre #!
     KPIs["avg_speed_post"] = avg_speed_post
-    KPIs["avg_mileage_pre"] = avg_mileage_pre
+    KPIs["avg_mileage_pre"] = None if AV_only else avg_mileage_pre #!
     KPIs["avg_mileage_post"] = avg_mileage_post
     KPIs["mean_human_diff"] = mean_human_diff
     KPIs["mean_CAV_diff"] = mean_CAV_diff
@@ -585,7 +594,15 @@ if __name__ == "__main__":
             data_path = os.path.join(root, exp_id)
             break
 
-    plot_path = os.path.join(data_path, "plots")
+
+    kpi_path = os.path.join(data_path, "KPIs")
+    plot_path = os.path.join(kpi_path, "plots")
+
+    if not os.path.exists(kpi_path):
+        os.makedirs(kpi_path)
+        os.makedirs(plot_path)
+        if verbose:
+            print(f"Created directory for KPIs and plots: {kpi_path}")
 
     exp_config_path = os.path.join(data_path, "exp_config.json")
 
@@ -600,12 +617,12 @@ if __name__ == "__main__":
             print(f"Cleared SUMO files in {os.path.join(data_path, 'SUMO_output')}")
 
     if not skip_collecting:
-        collect_to_single_CSV(data_path, os.path.join(data_path, "combined_data.csv"), verbose)
+        collect_to_single_CSV(data_path, os.path.join(kpi_path, "combined_data.csv"), verbose)
         if verbose:
-            print(f"Collected data to {os.path.join(data_path, 'combined_data.csv')}")
+            print(f"Collected data to {os.path.join(kpi_path, 'combined_data.csv')}")
 
     KPIs, vector_KPIs = extract_KPIs(
-        os.path.join(data_path, "combined_data.csv"),
+        os.path.join(kpi_path, "combined_data.csv"),
         {
             "human_learning_episodes": exp_config["human_learning_episodes"],
             "training_eps": exp_config["training_eps"] if "training_eps" in exp_config else exp_config["n_iters"] * exp_config["agent_frames_per_batch"],
@@ -616,12 +633,12 @@ if __name__ == "__main__":
         print(f"Extracted KPIs")
 
     # save KPIs to csv
-    KPIs.to_csv(os.path.join(data_path, "BenchmarkKPIs.csv"), index=False)
-    vector_KPIs.to_csv(os.path.join(data_path, "VectorKPIs.csv"), index=False)
+    KPIs.to_csv(os.path.join(kpi_path, "BenchmarkKPIs.csv"), index=False)
+    vector_KPIs.to_csv(os.path.join(kpi_path, "VectorKPIs.csv"), index=False)
     
     if verbose:
-        print(f"Saved KPIs to {os.path.join(data_path, 'BenchmarkKPIs.csv')}")
-        print(f"Saved vector KPIs to {os.path.join(data_path, 'VectorKPIs.csv')}")
+        print(f"Saved KPIs to {os.path.join(kpi_path, 'BenchmarkKPIs.csv')}")
+        print(f"Saved vector KPIs to {os.path.join(kpi_path, 'VectorKPIs.csv')}")
 
 
     # make plots of the vector KPIs
