@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2025-04-27 01:00:42 by Eclipse SUMO sumo Version 1.15.0
+<!-- generated on 2025-05-05 14:49:19 by Eclipse SUMO sumo Version 1.18.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
         <net-file value="../networks/provins/provins.net.xml"/>
-        <additional-files value="../results/pro_iql_2/det.add.xml,../results/pro_iql_2/route.rou.xml"/>
+        <additional-files value="../results/pro_iql2_2/det.add.xml,../results/pro_iql2_2/route.rou.xml"/>
     </input>
 
     <output>
-        <tripinfo-output value="../results/pro_iql_2/SUMO_output/detailed_sumo_stats_7780.xml"/>
-        <statistic-output value="../results/pro_iql_2/SUMO_output/sumo_stats_7780.xml"/>
+        <tripinfo-output value="../results/pro_iql2_2/SUMO_output/detailed_sumo_stats_7780.xml"/>
+        <statistic-output value="../results/pro_iql2_2/SUMO_output/sumo_stats_7780.xml"/>
     </output>
 
     <processing>
@@ -29,11 +29,13 @@
 -->
 
 <statistics xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/statistic_file.xsd">
+    <performance clockBegin="1746449359.12" clockEnd="1746449385.88" clockDuration="26.75" traciDuration="24.50" realTimeFactor="79.36" vehicleUpdatesPerSecond="3407.00" personUpdatesPerSecond="0.00" begin="0.00" end="2123.00" duration="2123.00"/>
     <vehicles loaded="523" inserted="523" running="0" waiting="0"/>
     <teleports total="0" jam="0" yield="0" wrongLane="0"/>
-    <safety collisions="0" emergencyStops="0"/>
+    <safety collisions="0" emergencyStops="0" emergencyBraking="0"/>
     <persons loaded="0" running="0" jammed="0"/>
-    <vehicleTripStatistics count="523" routeLength="2022.89" speed="11.46" duration="176.26" waitingTime="3.82" timeLoss="37.43" departDelay="0.10" departDelayWaiting="-1.00" totalTravelTime="92187.00" totalDepartDelay="55.00"/>
+    <personTeleports total="0" abortWait="0" wrongDest="0"/>
+    <vehicleTripStatistics count="523" routeLength="2013.16" speed="11.51" duration="174.27" waitingTime="3.46" timeLoss="36.45" departDelay="0.07" departDelayWaiting="-1.00" totalTravelTime="91144.00" totalDepartDelay="38.00"/>
     <pedestrianStatistics number="0" routeLength="0.00" duration="0.00" timeLoss="0.00"/>
     <rideStatistics number="0"/>
     <transportStatistics number="0"/>

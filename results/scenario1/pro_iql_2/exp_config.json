@@ -4,6 +4,7 @@
     "n_iters": 600,
     "human_learning_episodes": 200,
     "test_eps": 100,
+    "should_humans_adapt": false,
     "num_epochs": 1,
     "minibatch_size": 32,
     "lr": 0.003,
