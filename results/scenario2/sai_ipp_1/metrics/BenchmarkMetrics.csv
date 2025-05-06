@@ -1,0 +1,2 @@
+t_pre,t_post,t_CAV,t_HDV_pre,t_HDV_post,CAV_advantage,Effect_of_change,Effect_of_remaining,diff_sumo_routerl,avg_speed_pre,avg_speed_post,avg_mileage_pre,avg_mileage_post,mean_human_diff,mean_CAV_diff,avg_time_lost,avg_human_time_lost,avg_CAV_time_lost,winrate
+,209.8783783783784,209.8783783783784,,,,,,0.0,,8.06,,1669.0899999999997,,80.32432432432432,0.0,,0.0,0.0
