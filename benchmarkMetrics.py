@@ -64,8 +64,11 @@ def load_general_SUMO(file) -> pd.DataFrame:
     """
     Load general SUMO output file and return a DataFrame.
     """
-
-    tree = ET.parse(file)  # replace with your actual file path
+    try:
+        tree = ET.parse(file)
+    except ET.ParseError:
+        print(f"Error parsing XML file: {file}")
+        return pd.DataFrame()
     root = tree.getroot()
 
     # Flatten the XML into a single dictionary
@@ -94,7 +97,11 @@ def load_general_SUMO(file) -> pd.DataFrame:
         "vehicleTripStatistics_totalDepartDelay",
     ]
 
-    df = df[cols]
+    try:
+        df = df[cols]
+    except KeyError:
+        print(f"Error: Some columns are missing in the file: {file}")
+        return pd.DataFrame()
 
     try:
         df = df.apply(pd.to_numeric)
@@ -111,12 +118,15 @@ def load_detailed_SUMO(file) -> pd.DataFrame:
     """
     Load detailed SUMO output file and return a DataFrame.
     """
-    tree = ET.parse(file)  # replace with your file
+    try:
+        tree = ET.parse(file)
+    except ET.ParseError:
+        print(f"Error parsing XML file: {file}")
+        return pd.DataFrame()
     root = tree.getroot()
 
     # Extract all tripinfo elements and their attributes
     data = [trip.attrib for trip in root.findall("tripinfo")]
-
     # Convert to DataFrame
     df = pd.DataFrame(data)
 
@@ -133,7 +143,12 @@ def load_detailed_SUMO(file) -> pd.DataFrame:
         "vType",
         "speedFactor",
     ]
-    df = df[cols]
+    
+    try:
+        df = df[cols]
+    except KeyError:
+        print(f"Error: Some columns are missing in the file: {file}")
+        return pd.DataFrame()
     # print(df.shape)
 
     df = flatten_by_id(df)
@@ -204,11 +219,13 @@ def load_episode(results_path: str, episode: int, verbose: bool) -> pd.DataFrame
         if "detailed" in file:
             df = load_detailed_SUMO(file)
             # print("Detailed SUMO file loaded.")
-            dfs.append(df)
+            if len(dfs) > 0:
+                dfs.append(df)
         else:
             df = load_general_SUMO(file)
             # print("General SUMO file loaded.")
-            dfs.append(df)
+            if len(dfs) > 0:
+                dfs.append(df)
 
     for file in RouteRL_files:
         df = load_routeRL(file)
@@ -240,10 +257,15 @@ def collect_to_single_CSV(path, save_path="metrics.csv", verbose=False):
 
     episodes = get_episodes(os.path.join(path, "episodes"))
 
+    dfs = []
     for i in episodes:
         # add new rows to the DataFrame
-        df = pd.concat([df, load_episode(path, i, verbose)], ignore_index=True)
 
+        df = load_episode(path, i, verbose)
+        if len(df) > 0:
+            dfs.append(df)
+
+    df = pd.concat(dfs, axis=0)
     df.to_csv(save_path, index=False)
 
     return df
@@ -320,7 +342,6 @@ def extract_metrics(path, config):
     """
 
     training_duration = config["human_learning_episodes"] + config["training_eps"]
-
     df = pd.read_csv(path)
 
 
@@ -328,16 +349,15 @@ def extract_metrics(path, config):
     human_ids = get_type_ids(df, "Human")
 
     testing_frames = df[df["episode"] > training_duration] # Learning and testing period
-
+    print(len(testing_frames), training_duration)
     before_mutation = df[df["episode"] <= config["human_learning_episodes"]] # Human policy testing period
     before_mutation = before_mutation[before_mutation["episode"] > config["human_learning_episodes"] - 50] # Hardcoded human policy testing period
-    
     AV_only = before_mutation.shape[0] == 0 # if there is no human learning period, we can calculate only part of the metrics.
     if verbose and AV_only:
         print("AV only experiment, no human learning period found.")
 
     after_mutation = df[df["episode"] > config["human_learning_episodes"]] # Learning and testing period
-
+    training_frames = after_mutation[after_mutation["episode"] <= training_duration] # Learning period
     # for each agent calculate average time during before_mutation
     avg_times_pre = {}
     for id in human_ids + CAV_ids:
@@ -348,6 +368,7 @@ def extract_metrics(path, config):
     if not AV_only:
         before_mutation = add_benchmark_columns(before_mutation, params)
     after_mutation = add_benchmark_columns(after_mutation, params)
+    training_frames = add_benchmark_columns(training_frames, params)
     testing_frames = add_benchmark_columns(testing_frames, params)
 
     t_CAV = 0
@@ -369,40 +390,44 @@ def extract_metrics(path, config):
         )
         t_pre = t_pre / (len(CAV_ids) + len(human_ids))
 
-        t_HDV_post = 0
+        t_HDV_test = 0
         for id in human_ids:
-            t_HDV_post += testing_frames[f"agent_{id}_duration"].mean()
-        t_HDV_post /= len(human_ids)
+            t_HDV_test += testing_frames[f"agent_{id}_duration"].mean()
+        t_HDV_test /= len(human_ids)
 
-    t_post = np.sum(
+    t_train = np.sum(
+        [training_frames[f"agent_{id}_duration"].mean() for id in human_ids + CAV_ids]
+    )
+    t_train = t_train / (len(CAV_ids) + len(human_ids))
+
+    t_test = np.sum(
         [testing_frames[f"agent_{id}_duration"].mean() for id in human_ids + CAV_ids]
     )
-    t_post = t_post / (len(CAV_ids) + len(human_ids))
+    t_test = t_test / (len(CAV_ids) + len(human_ids))
 
-    t_sumo = np.mean(testing_frames["vehicleTripStatistics_totalTravelTime"]) # during whole experiment
+    t_sumo = np.mean(testing_frames["vehicleTripStatistics_totalTravelTime"]) 
     t_sumo = t_sumo / (len(CAV_ids) + len(human_ids))
-    # extract metrics of the experiment
 
     if not AV_only:
         avg_mileage_pre = np.mean(before_mutation["vehicleTripStatistics_routeLength"])
-    avg_mileage_post = np.mean(testing_frames["vehicleTripStatistics_routeLength"])
+    avg_mileage_test = np.mean(testing_frames["vehicleTripStatistics_routeLength"])
 
     if not AV_only:
         avg_speed_pre = np.mean(before_mutation["vehicleTripStatistics_speed"])
-    avg_speed_post = np.mean(testing_frames["vehicleTripStatistics_speed"])
+    avg_speed_test = np.mean(testing_frames["vehicleTripStatistics_speed"])
     
-    min_human_times = [np.min(after_mutation[f"agent_{id}_duration"]) for id in human_ids]
+    min_human_times = [np.min(training_frames[f"agent_{id}_duration"]) for id in human_ids]
 
-    min_CAV_times = [np.min(after_mutation[f"agent_{id}_duration"]) for id in CAV_ids]
+    min_CAV_times = [np.min(training_frames[f"agent_{id}_duration"]) for id in CAV_ids]
 
-    max_human_times = [np.max(after_mutation[f"agent_{id}_duration"]) for id in human_ids]
+    max_human_times = [np.max(training_frames[f"agent_{id}_duration"]) for id in human_ids]
 
-    max_CAV_times = [np.max(after_mutation[f"agent_{id}_duration"]) for id in CAV_ids]
+    max_CAV_times = [np.max(training_frames[f"agent_{id}_duration"]) for id in CAV_ids]
 
-    mean_human_diff = np.mean(
+    cost_of_learning_humans = np.mean(
         [max_human_times[i] - min_human_times[i] for i in range(len(min_human_times))]
     )
-    mean_CAV_diff = np.mean(
+    cost_of_learning_CAVs = np.mean(
         [max_CAV_times[i] - min_CAV_times[i] for i in range(len(min_CAV_times))]
     )
       
@@ -421,10 +446,10 @@ def extract_metrics(path, config):
         [total_time_lost[id] for id in CAV_ids]
     )
 
-    average_time_CAVs = after_mutation[
+    average_time_CAVs = training_frames[
         [f"agent_{id}_duration" for id in CAV_ids]
     ].mean(axis=1)
-    average_time_humans = after_mutation[
+    average_time_humans = training_frames[
         [f"agent_{id}_duration" for id in human_ids]
     ].mean(axis=1)
 
@@ -438,20 +463,22 @@ def extract_metrics(path, config):
     metrics = {}
 
     metrics["t_pre"] = None if AV_only else t_pre
-    metrics["t_post"] = t_post
+    metrics["t_test"] = t_test
+    metrics["t_train"] = t_train
     metrics["t_CAV"] = t_CAV
     metrics["t_HDV_pre"] = None if AV_only else t_HDV_pre
-    metrics["t_HDV_post"] = None if AV_only else t_HDV_post
-    metrics["CAV_advantage"] = None if AV_only else t_HDV_post / t_CAV
+    metrics["t_HDV_test"] = None if AV_only else t_HDV_test
+    metrics["CAV_advantage"] = None if AV_only else t_HDV_test / t_CAV
     metrics["Effect_of_change"] = None if AV_only else t_HDV_pre / t_CAV
-    metrics["Effect_of_remaining"] = None if AV_only else t_HDV_pre / t_HDV_post #!
-    metrics["diff_sumo_routerl"] = t_sumo - t_post
+    metrics["Effect_of_remaining"] = None if AV_only else t_HDV_pre / t_HDV_test #!
+    metrics["diff_sumo_routerl"] = t_sumo - t_test
     metrics["avg_speed_pre"] = None if AV_only else avg_speed_pre #!
-    metrics["avg_speed_post"] = avg_speed_post
+    metrics["avg_speed_test"] = avg_speed_test
     metrics["avg_mileage_pre"] = None if AV_only else avg_mileage_pre #!
-    metrics["avg_mileage_post"] = avg_mileage_post
-    metrics["mean_human_diff"] = mean_human_diff
-    metrics["mean_CAV_diff"] = mean_CAV_diff
+    metrics["avg_mileage_test"] = avg_mileage_test
+    metrics["cost_of_learning"] = (cost_of_learning_humans * len(human_ids) + cost_of_learning_CAVs * len(CAV_ids)) / (len(human_ids) + len(CAV_ids))
+    metrics["cost_of_learning_humans"] = cost_of_learning_humans
+    metrics["cost_of_learning_CAVs"] = cost_of_learning_CAVs
     metrics["avg_time_lost"] = average_time_lost
     metrics["avg_human_time_lost"] = average_human_time_lost
     metrics["avg_CAV_time_lost"] = average_CAV_time_lost
@@ -472,33 +499,21 @@ def extract_metrics(path, config):
     avg_time_lost = after_mutation["vehicleTripStatistics_timeLoss"] + after_mutation["vehicleTripStatistics_departDelay"]
     avg_time_lost = avg_time_lost.tolist()
 
-    time_excess = [0] * config["human_learning_episodes"] 
-    time_excess += after_mutation[[f"agent_{id}_time_lost" for id in human_ids + CAV_ids]].sum(axis=1).tolist()
-    time_excess 
+    time_excess = after_mutation[[f"agent_{id}_time_lost" for id in human_ids + CAV_ids]].sum(axis=1).tolist()
 
-
-    vector_metrics = [
-        after_mutation["episode"].tolist(),
-        instability_humans,
-        instability_CAVs,
-        avg_time_lost,
-    ]
-
-    vector_metrics_df = pd.DataFrame(vector_metrics).T
-    vector_metrics_df.columns = [
-        "episode",
-        "instability_humans",
-        "instability_CAVs",
-        "avg_time_lost",
-    ]
-    vector_metrics_df = vector_metrics_df.astype(
-        {
-            "episode": int,
-            "instability_humans": int,
-            "instability_CAVs": int,
-            "avg_time_lost": float,
-        }
-    )
+    vector_metrics_df = pd.DataFrame({
+    "episode": after_mutation["episode"],
+    "instability_humans": instability_humans,
+    "instability_CAVs": instability_CAVs,
+    "avg_time_lost": avg_time_lost,
+    "time_excess": time_excess,
+    }).astype({
+    "episode": int,
+    "instability_humans": int,
+    "instability_CAVs": int,
+    "avg_time_lost": float,
+    "time_excess": float,
+})
 
     return metrics_df, vector_metrics_df
 
@@ -670,4 +685,12 @@ if __name__ == "__main__":
         plot_path,
         "avg time lost",
         "Average time lost",
+    )
+
+    #time_excess plot
+    plot_vector_values(
+        vector_metrics[["episode", "time_excess"]],
+        plot_path,
+        "time excess",
+        "Time excess",
     )
