@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2025-04-30 11:33:59 by Eclipse SUMO sumo Version 1.18.0
+<!-- generated on 2025-05-01 05:48:59 by Eclipse SUMO sumo Version 1.18.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
@@ -9,8 +9,8 @@
     </input>
 
     <output>
-        <tripinfo-output value="../results/pro_iql2_1/SUMO_output/detailed_sumo_stats_4620.xml"/>
-        <statistic-output value="../results/pro_iql2_1/SUMO_output/sumo_stats_4620.xml"/>
+        <tripinfo-output value="../results/pro_iql2_1/SUMO_output/detailed_sumo_stats_9042.xml"/>
+        <statistic-output value="../results/pro_iql2_1/SUMO_output/sumo_stats_9042.xml"/>
     </output>
 
     <processing>
@@ -29,13 +29,13 @@
 -->
 
 <statistics xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/statistic_file.xsd">
-    <performance clockBegin="1746005639.39" clockEnd="1746005666.27" clockDuration="26.88" traciDuration="24.59" realTimeFactor="79.14" vehicleUpdatesPerSecond="3446.57" personUpdatesPerSecond="0.00" begin="0.00" end="2127.00" duration="2127.00"/>
+    <performance clockBegin="1746071339.70" clockEnd="1746071365.02" clockDuration="25.32" traciDuration="23.42" realTimeFactor="83.94" vehicleUpdatesPerSecond="3625.45" personUpdatesPerSecond="0.00" begin="0.00" end="2125.00" duration="2125.00"/>
     <vehicles loaded="523" inserted="523" running="0" waiting="0"/>
     <teleports total="0" jam="0" yield="0" wrongLane="0"/>
     <safety collisions="0" emergencyStops="0" emergencyBraking="0"/>
     <persons loaded="0" running="0" jammed="0"/>
     <personTeleports total="0" abortWait="0" wrongDest="0"/>
-    <vehicleTripStatistics count="523" routeLength="2032.68" speed="11.44" duration="177.11" waitingTime="4.09" timeLoss="37.65" departDelay="0.08" departDelayWaiting="-1.00" totalTravelTime="92630.00" totalDepartDelay="41.00"/>
+    <vehicleTripStatistics count="523" routeLength="2025.74" speed="11.49" duration="175.49" waitingTime="3.61" timeLoss="36.65" departDelay="0.08" departDelayWaiting="-1.00" totalTravelTime="91782.00" totalDepartDelay="41.00"/>
     <pedestrianStatistics number="0" routeLength="0.00" duration="0.00" timeLoss="0.00"/>
     <rideStatistics number="0"/>
     <transportStatistics number="0"/>
