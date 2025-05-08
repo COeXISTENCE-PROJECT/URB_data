@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2025-04-27 06:31:15 by Eclipse SUMO sumo Version 1.22.0
+<!-- generated on 2025-04-27 13:04:44 by Eclipse SUMO sumo Version 1.22.0
 <sumoConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
@@ -9,8 +9,8 @@
     </input>
 
     <output>
-        <tripinfo-output value="../results/sai_qmi_long_1/SUMO_output/detailed_sumo_stats_20210.xml"/>
-        <statistic-output value="../results/sai_qmi_long_1/SUMO_output/sumo_stats_20210.xml"/>
+        <tripinfo-output value="../results/sai_qmi_long_1/SUMO_output/detailed_sumo_stats_40225.xml"/>
+        <statistic-output value="../results/sai_qmi_long_1/SUMO_output/sumo_stats_40225.xml"/>
     </output>
 
     <processing>
