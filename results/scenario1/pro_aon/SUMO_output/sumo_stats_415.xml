@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2025-04-23 19:58:21 by Eclipse SUMO sumo Version 1.22.0
+<!-- generated on 2025-04-23 20:11:31 by Eclipse SUMO sumo Version 1.22.0
 <sumoConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 
     <input>
@@ -9,8 +9,8 @@
     </input>
 
     <output>
-        <tripinfo-output value="../results/pro_aon\SUMO_output\detailed_sumo_stats_415.xml"/>
-        <statistic-output value="../results/pro_aon\SUMO_output\sumo_stats_415.xml"/>
+        <tripinfo-output value="../results/pro_aon\SUMO_output\detailed_sumo_stats_631.xml"/>
+        <statistic-output value="../results/pro_aon\SUMO_output\sumo_stats_631.xml"/>
     </output>
 
     <processing>
@@ -29,7 +29,7 @@
 -->
 
 <statistics xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/statistic_file.xsd">
-    <performance clockBegin="712174.69" clockEnd="712180.71" clockDuration="6.02" traciDuration="4.74" realTimeFactor="352.61" vehicleUpdatesPerSecond="14636.59" personUpdatesPerSecond="0.00" begin="0.00" end="2122.00" duration="2122.00"/>
+    <performance clockBegin="712964.38" clockEnd="712970.47" clockDuration="6.09" traciDuration="4.75" realTimeFactor="348.50" vehicleUpdatesPerSecond="14465.92" personUpdatesPerSecond="0.00" begin="0.00" end="2122.00" duration="2122.00"/>
     <vehicles loaded="523" inserted="523" running="0" waiting="0"/>
     <teleports total="0" jam="0" yield="0" wrongLane="0"/>
     <safety collisions="0" emergencyStops="0" emergencyBraking="0"/>
