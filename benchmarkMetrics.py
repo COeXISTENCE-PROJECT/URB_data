@@ -587,6 +587,7 @@ def clear_SUMO_files(path, ep_path, remove_additional_files=False):
             break
         episode += 1
     if remove_additional_files:
+        print("removing files")
         episodes = get_episodes(ep_path)
         # remove SUMO files that are not in the episodes
         for file in os.listdir(path):
@@ -641,11 +642,11 @@ if __name__ == "__main__":
 
     if not skip_clearing:
         clear_SUMO_files(
-            os.path.join(data_path, "SUMO_output"), os.path.join(data_path, "episodes")
+            os.path.join(data_path, "SUMO_output"), os.path.join(data_path, "episodes"), True
         )
         if verbose:
             print(f"Cleared SUMO files in {os.path.join(data_path, 'SUMO_output')}")
-
+    sys.exit()
     if not skip_collecting:
         collect_to_single_CSV(data_path, os.path.join(metrics_path, "combined_data.csv"), verbose)
         if verbose:
