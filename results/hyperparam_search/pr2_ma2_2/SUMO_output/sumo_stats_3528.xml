@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2025-05-05 19:32:33 by Eclipse SUMO sumo Version 1.18.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+
+    <input>
+        <net-file value="../networks/provins/provins.net.xml"/>
+        <additional-files value="../results/pro_map2_2/det.add.xml,../results/pro_map2_2/route.rou.xml"/>
+    </input>
+
+    <output>
+        <tripinfo-output value="../results/pro_map2_2/SUMO_output/detailed_sumo_stats_3528.xml"/>
+        <statistic-output value="../results/pro_map2_2/SUMO_output/sumo_stats_3528.xml"/>
+    </output>
+
+    <processing>
+        <time-to-teleport value="-1"/>
+    </processing>
+
+    <report>
+        <no-step-log value="true"/>
+    </report>
+
+    <random_number>
+        <seed value="42"/>
+    </random_number>
+
+</configuration>
+-->
+
+<statistics xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/statistic_file.xsd">
+    <performance clockBegin="1746466353.83" clockEnd="1746466440.59" clockDuration="86.76" traciDuration="84.64" realTimeFactor="24.67" vehicleUpdatesPerSecond="1125.54" personUpdatesPerSecond="0.00" begin="0.00" end="2140.00" duration="2140.00"/>
+    <vehicles loaded="523" inserted="523" running="0" waiting="0"/>
+    <teleports total="0" jam="0" yield="0" wrongLane="0"/>
+    <safety collisions="0" emergencyStops="0" emergencyBraking="0"/>
+    <persons loaded="0" running="0" jammed="0"/>
+    <personTeleports total="0" abortWait="0" wrongDest="0"/>
+    <vehicleTripStatistics count="523" routeLength="2104.35" speed="11.23" duration="186.72" waitingTime="4.87" timeLoss="41.07" departDelay="0.07" departDelayWaiting="-1.00" totalTravelTime="97652.00" totalDepartDelay="37.00"/>
+    <pedestrianStatistics number="0" routeLength="0.00" duration="0.00" timeLoss="0.00"/>
+    <rideStatistics number="0"/>
+    <transportStatistics number="0"/>
+</statistics>
