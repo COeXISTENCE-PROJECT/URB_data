@@ -598,7 +598,7 @@ def clear_SUMO_files(path, ep_path, remove_additional_files=False):
                     # print(f"Removed file: {file}")
 
 
-results_folder = f"./results"
+results_folder = f"./results/"
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -646,7 +646,7 @@ if __name__ == "__main__":
         )
         if verbose:
             print(f"Cleared SUMO files in {os.path.join(data_path, 'SUMO_output')}")
-    sys.exit()
+
     if not skip_collecting:
         collect_to_single_CSV(data_path, os.path.join(metrics_path, "combined_data.csv"), verbose)
         if verbose:
