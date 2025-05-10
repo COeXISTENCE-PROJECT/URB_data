@@ -197,8 +197,8 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
 
             if idx == 1:
                 ax.plot(x, av_smoothed, label=f'{label} (AV)', color=color, linewidth=1)
-            #else:
-            #    ax.plot(x, av_smoothed, color=color, linewidth=1, alpha=0.5)
+            else:
+                ax.plot(x, av_smoothed, color=color, linewidth=1, alpha=0.5)
 
 
     # Plot the last human agent with dashed line
@@ -269,14 +269,14 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
 
     ### Set y axis label only on the rightest plot
     if i == 0:
-        ax.set_ylabel(r"Travel time relative\\to $t^{\mathrm{pre}}$", fontsize=18)
+        ax.set_ylabel("Travel time relative\nto $t^{\\mathrm{pre}}$", fontsize=18)
         phases_legend = [
             Patch(facecolor='none', edgecolor='none', label='Phases:'),  # header
             Patch(facecolor='lightgrey', alpha=0.4, label='   Human learning'),
             Patch(facecolor='white', edgecolor='black', alpha=0.4, label='   Machine learning'),
             Patch(facecolor='lightblue', alpha=0.4, label='   Testing phase'),
         ]
-        ax.legend(handles=phases_legend, loc='upper left', ncol = 2, frameon=False, fontsize=14)
+        #ax.legend(handles=phases_legend, loc='upper left', ncol = 2, frameon=False, fontsize=14)
 
     if i == 1:
 
@@ -289,7 +289,7 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
             Line2D([0], [0], color='navy', lw=2, label='QMIX'),
             Line2D([0], [0], marker='v', color='navy', linestyle='None', markersize=10, label='Qmix longer training')
         ]
-        ax.legend(handles=legend1, loc='upper left', ncol=2, frameon=False, fontsize=14)
+        #ax.legend(handles=legend1, loc='upper left', ncol=2, frameon=False, fontsize=14)
         
     if i == 2:
 
@@ -301,7 +301,7 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
             Line2D([0], [0], color='black', lw=2, linestyle = '--', label='Random'),
             Line2D([0], [0], color='salmon', lw=2, label='Humans'),
         ]
-        ax.legend(handles=legend2, loc='upper left', ncol = 2, frameon=False, fontsize=14)
+        #ax.legend(handles=legend2, loc='upper left', ncol = 2, frameon=False, fontsize=14)
         
 
 ### Add a central legend for the whole plot
@@ -344,4 +344,4 @@ fig.legend(handles=legend_elements, loc='upper center', bbox_to_anchor=(0.5, 1.0
     Line2D([0], [0], color='navy', lw=2, label='QMIX')
 ]"""
 
-fig.savefig('travel_times_one_replication.png', dpi=300, bbox_inches='tight')  # Change filename and format as needed
+fig.savefig('travel_times_all_replication_outside_legends.png', dpi=300, bbox_inches='tight')  # Change filename and format as needed
