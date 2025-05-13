@@ -196,16 +196,16 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
             x = [i * 5 for i in range(len(av_smoothed))]
 
             if idx == 1:
-                ax.plot(x, av_smoothed, label=f'{label} (AV)', color=color, linewidth=1)
-            else:
-                ax.plot(x, av_smoothed, color=color, linewidth=1, alpha=0.5)
+                ax.plot(x, av_smoothed, label=f'{label} (AV)', color=color, linewidth=2)
+            #else:
+            #    ax.plot(x, av_smoothed, color=color, linewidth=1, alpha=0.5)
 
 
     # Plot the last human agent with dashed line
     human_travel_times = [val / avg_human_tt for val in human_run]
     smooothed_humans = smooth_series(human_travel_times, window=35, valid_start_index=0)
     x_humans = [i * 5 for i in range(len(smooothed_humans))]
-    ax.plot(x_humans, smooothed_humans, label='Humans', color='salmon', linestyle='-', linewidth=1)
+    ax.plot(x_humans, smooothed_humans, label='Humans', color='salmon', linestyle='-', linewidth=2)
 
     # Compute the avg human tt for all the algorithms
     avg_all_algos_humans_tt = sum(avg_human_tt_list) / len(avg_human_tt_list) 
@@ -227,15 +227,15 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
             label = baseline_labels.get(baseline_suffix, baseline_suffix.upper())
             style = baseline_styles.get(baseline_suffix, {'color': 'black', 'linestyle': '--'})
 
-            ax.plot(x, label=f'{label} (AV)', **style, linewidth=4)
+            ax.plot(x, label=f'{label} (AV)', **style, linewidth=3)
 
     ##S Add a horizontal line at y=1 
     ax.axhline(y=1, color='black', linestyle='-', linewidth=2)
 
     #S# Add background colour
-    ax.axvspan(0, 200, color='lightgrey', alpha=0.4, label='Human Leaning')
-    ax.axvspan(200, 6200, color='white', alpha=0.4, label='Machine Leaning')
-    ax.axvspan(6200, 6400, color='lightblue', alpha=0.4, label='Testing phase')
+    ax.axvspan(0, 200, color='lightgrey', alpha=0.4, label='Human Leaning', zorder=0)
+    ax.axvspan(200, 6200, color='white', alpha=0.4, label='Machine Leaning', zorder=0)
+    ax.axvspan(6200, 6400, color='lightblue', alpha=0.4, label='Testing phase', zorder=0)
 
     ### Calculate extravaganze points
     if city_prefix == "ing":
@@ -264,21 +264,22 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
 
     ### Adjust grid params
     ax.minorticks_on()
-    ax.grid(axis = 'y', which='minor', color='#EEEEEE', linestyle=(0,(1,1)), linewidth=0.6, alpha=0.2)
-    ax.grid(axis = 'y')
+    ax.grid(axis='y', which='minor', color='gray', linestyle=(0,(1,1)), linewidth=0.6, alpha=0.8, zorder=100)
+    ax.grid(axis='y', color='gray', linewidth=1.0, alpha=0.8, zorder=100)
+
 
     ### Set y axis label only on the rightest plot
     if i == 0:
         ax.set_ylabel("Travel time relative\nto $t^{\\mathrm{pre}}$", fontsize=18)
-        phases_legend = [
+        """phases_legend = [
             Patch(facecolor='none', edgecolor='none', label='Phases:'),  # header
             Patch(facecolor='lightgrey', alpha=0.4, label='   Human learning'),
             Patch(facecolor='white', edgecolor='black', alpha=0.4, label='   Machine learning'),
             Patch(facecolor='lightblue', alpha=0.4, label='   Testing phase'),
-        ]
+        ]"""
         #ax.legend(handles=phases_legend, loc='upper left', ncol = 2, frameon=False, fontsize=14)
 
-    if i == 1:
+    """if i == 1:
 
         legend1 = [
             Patch(facecolor='none', edgecolor='none', label='MARL algorithms:'),
@@ -300,7 +301,7 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
             Patch(facecolor='none', edgecolor='none', label=' '),
             Line2D([0], [0], color='black', lw=2, linestyle = '--', label='Random'),
             Line2D([0], [0], color='salmon', lw=2, label='Humans'),
-        ]
+        ]"""
         #ax.legend(handles=legend2, loc='upper left', ncol = 2, frameon=False, fontsize=14)
         
 
@@ -310,27 +311,29 @@ handles, labels = axes[1].get_legend_handles_labels()
 
 legend_elements = [
     # Column 1: MARL algorithms
-    Patch(facecolor='none', edgecolor='none', label='MARL algorithms:'),
+    Patch(facecolor='none', edgecolor='none', label=r'$\mathbf{MARL\ algorithms}$'),
     Line2D([0], [0], color='firebrick', lw=2, label='IPPO'),
     Line2D([0], [0], color='teal', lw=2, label='IQL'),
     Line2D([0], [0], color='peru', lw=2, label='MAPPO'),
+    Patch(facecolor='none', edgecolor='none', label=' '),
     Line2D([0], [0], color='navy', lw=2, label='QMIX'),
     Line2D([0], [0], marker='v', color='navy', linestyle='None', markersize=10, label='Qmix longer training'),
+    Patch(facecolor='none', edgecolor='none', label=' '),
 
     # Column 2: Baselines
-    Patch(facecolor='none', edgecolor='none', label='Baselines:'),
+    Patch(facecolor='none', edgecolor='none', label=r'$\mathbf{Baselines}$'),
     Line2D([0], [0], color='slategray', linestyle='--', lw=2, label='All-Or-Nothing'),
     Line2D([0], [0], color='black', linestyle='--', lw=2, label='Random'),
     Line2D([0], [0], color='salmon', lw=2, label='Humans'),
 
     # Column 3: Phases
-    Patch(facecolor='none', edgecolor='none', label='Phases:'),
+    Patch(facecolor='none', edgecolor='none', label=r'$\mathbf{Phases}$'),
     Patch(facecolor='lightgrey', alpha=0.4, label='Human learning'),
     Patch(facecolor='white', edgecolor='black', alpha=0.4, label='Machine learning'),
     Patch(facecolor='lightblue', alpha=0.4, label='Testing phase'),
 ]
 
-fig.legend(handles=legend_elements, loc='upper center', bbox_to_anchor=(0.5, 1.05), ncol=3, fontsize=14, frameon=False)
+fig.legend(handles=legend_elements, loc='upper center', bbox_to_anchor=(0.5, 1.05), ncol=4, fontsize=14, frameon=False)
 
 ## Add the legend on top
 """legend_elements = [
@@ -344,4 +347,4 @@ fig.legend(handles=legend_elements, loc='upper center', bbox_to_anchor=(0.5, 1.0
     Line2D([0], [0], color='navy', lw=2, label='QMIX')
 ]"""
 
-fig.savefig('travel_times_all_replication_outside_legends.png', dpi=300, bbox_inches='tight')  # Change filename and format as needed
+fig.savefig('my_figure.png', dpi=300, bbox_inches='tight')  # Change filename and format as needed
