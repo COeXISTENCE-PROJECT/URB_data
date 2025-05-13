@@ -1,7 +1,6 @@
-- Task distribution table: [here](https://docs.google.com/spreadsheets/d/1Upf4nPxh5kPqe4qOKV84EOifHWEVYadJx688urlQxb0/edit?gid=0#gid=0).
+URB Data
 
 ---
-
 <table style="border-collapse: collapse; text-align: center;">
   <thead>
     <tr>
@@ -126,8 +125,3 @@
 </table>
 
 ---
-
-
-<div style="text-align: center;">
-  <img src="https://i.imgur.com/o3kImSM.png" style="width: 50%;" alt="image">
-</div>
