@@ -61,10 +61,10 @@ Figure ??
 
 ## Hyperparameter tuning
 
--
+TO FILL
 
 <p align="center">
-  <img src="images/urb.png" align="left" width="75%"/>
+  <img src="images/urb.png" align="center" width="75%"/>
 </p>
 
 ## Metrics for Scenario 1
