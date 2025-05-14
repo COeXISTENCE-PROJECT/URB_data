@@ -113,8 +113,6 @@ suffix_labels = {
 # Define city prefixes and their readable names
 city_prefixes = OrderedDict([
     ('sai', 'Saint Arnoult (89 AVs)'),
-    ('pro', 'Provins (210 AVs)'),
-    ('ing', 'Ingolstadt (415 AVs)')
 ])
 
 
@@ -159,11 +157,10 @@ for folder in os.listdir(parent_dir):
                     baseline_groups[city_prefix][baseline_suffix] = folder_path
 
 # Create subplots (3 cities)
-fig, axes = plt.subplots(1, 3, figsize=(18, 5), sharey=True)
+fig, ax = plt.subplots(figsize=(5, 4))
 plt.subplots_adjust(wspace=0.1)
 
 for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
-    ax = axes[i]
     city_name = city_prefixes[city_prefix]
     avg_human_tt_list = []
     print(city_prefix)
@@ -245,11 +242,11 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
     else:
         folder = "results/scenario1_long/" + city_prefix + "_qm2_xl_2/episodes"
 
-    extravaganza = calculate_extravaganza(folder)
-    normalized_extravaganze = extravaganza / avg_all_algos_humans_tt
+    #extravaganza = calculate_extravaganza(folder)
+    #normalized_extravaganze = extravaganza / avg_all_algos_humans_tt
 
     ### Add extravaganze points
-    ax.plot(6300, normalized_extravaganze, marker='v', color='navy', label='Qmix longer training', markersize=10)
+    #ax.plot(6300, normalized_extravaganze, marker='v', color='navy', label='Qmix longer training', markersize=10)
 
     ### Ticks params and titles
     ax.tick_params(axis='both', labelsize=14)
@@ -308,7 +305,7 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
 
 ### Add a central legend for the whole plot
 plt.subplots_adjust(top=0.7) 
-handles, labels = axes[1].get_legend_handles_labels()
+handles, labels = ax.get_legend_handles_labels()
 
 legend_elements = [
     # Column 1: MARL algorithms
@@ -335,7 +332,7 @@ legend_elements = [
 ]
 
 #fig.legend(handles=legend_elements, loc='lower center', bbox_to_anchor=(0.5, 1.05), ncol=4, fontsize=12, frameon=False)
-fig.legend(handles=legend_elements, loc='upper center', bbox_to_anchor=(0.5, -0.1), ncol=4, fontsize=12, frameon=False)
+#fig.legend(handles=legend_elements, loc='upper center', bbox_to_anchor=(0.5, -0.1), ncol=4, fontsize=12, frameon=False)
 
 ## Add the legend on top
 """legend_elements = [
@@ -349,4 +346,4 @@ fig.legend(handles=legend_elements, loc='upper center', bbox_to_anchor=(0.5, -0.
     Line2D([0], [0], color='navy', lw=2, label='QMIX')
 ]"""
 
-fig.savefig('my_figure.png', dpi=300, bbox_inches='tight')  # Change filename and format as needed
+fig.savefig('100_per_avs.png', dpi=300, bbox_inches='tight')  # Change filename and format as needed
