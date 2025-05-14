@@ -112,7 +112,7 @@ suffix_labels = {
 
 # Define city prefixes and their readable names
 city_prefixes = OrderedDict([
-    ('sai', 'Saint Arnoult (89 AVs)'),
+    ('sai', 'Saint Arnoult (222 AVs)'),
 ])
 
 
