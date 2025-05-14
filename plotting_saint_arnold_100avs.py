@@ -182,7 +182,7 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
             
             ## AVs 
             av_run = get_travel_times_by_kind(folder, 'AV')
-            start_index = 40  # AVs appear after episode 40
+            start_index = 0  # AVs appear after episode 40
             av_run = [val if idx >= start_index else np.nan for idx, val in enumerate(av_run)]
             #av_run = [val / avg_human_tt for val in av_run]
             
@@ -219,7 +219,7 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
 
             ## Find the average"""
             average = sum(av_times) / len(av_times) if av_times else float('nan')
-            x = [np.nan] * 200 + [average] * 6100
+            x = [average] * 6100
 
             label = baseline_labels.get(baseline_suffix, baseline_suffix.upper())
             style = baseline_styles.get(baseline_suffix, {'color': 'black', 'linestyle': '--'})
@@ -230,9 +230,9 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
     #ax.axhline(y=1, color='black', linestyle='-', linewidth=2)
 
     #S# Add background colour
-    ax.axvspan(0, 200, color='lightgrey', alpha=0.4, label='Human Leaning', zorder=0)
-    ax.axvspan(200, 6200, color='white', alpha=0.4, label='Machine Leaning', zorder=0)
-    ax.axvspan(6200, 6400, color='lightblue', alpha=0.4, label='Testing phase', zorder=0)
+    #ax.axvspan(0, 200, color='lightgrey', alpha=0.4, label='Human Leaning', zorder=0)
+    ax.axvspan(0, 6000, color='white', alpha=0.4, label='Machine Leaning', zorder=0)
+    ax.axvspan(6000, 6100, color='lightblue', alpha=0.4, label='Testing phase', zorder=0)
 
     ### Calculate extravaganze points
     if city_prefix == "ing":
@@ -257,7 +257,7 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
 
 
     #ax.set_xticks([0, 1000, 2000, 3000, 4000, 5000, 6000, 6800])
-    ax.set_xlim(0, 6400)
+    ax.set_xlim(0, 6100)
     #ax.set_xticklabels(['0', '1000', '2000', '3000', '4000', '5000', '6000', '...20300'])
 
     ### Adjust grid params
