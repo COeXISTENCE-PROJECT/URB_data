@@ -45,20 +45,20 @@ Figure ??
 
 ### Selfish AVs versus adapting humans in Nangis
 
-<p align="center">
-  <img src="results/demonstrative/nan_ipp_ada/plots/travel_times.png" align="center" width="50%"/>
+<p align="left">
+  <img src="results/demonstrative/nan_ipp_ada/plots/travel_times.png" align="left" width="75%"/>
 </p>
 
 ### Malicious AVs in Nemours
 
 <p align="center">
-  <img src="results/demonstrative/nem_qmi_mal/plots/travel_times.png" align="center" width="50%"/>
+  <img src="results/demonstrative/nem_qmi_mal/plots/travel_times.png" align="left" width="75%"/>
 </p>
 
 ### Altruistic AVs in Gretz-Armainvillers
 
 <p align="center">
-  <img src="results/demonstrative/gre_vdn_alt/plots/travel_times.png" align="center" width="50%"/>
+  <img src="results/demonstrative/gre_vdn_alt/plots/travel_times.png" align="left" width="75%"/>
 </p>
 
 ## Hyperparameter tuning
@@ -66,7 +66,7 @@ Figure ??
 -
 
 <p align="center">
-  <img src="images/urb.png" align="center" width="30%"/>
+  <img src="images/urb.png" align="left" width="75%"/>
 </p>
 
 ## Metrics for Scenario 1
