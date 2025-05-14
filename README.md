@@ -22,7 +22,7 @@ Repository provides all results produced in the experiment from Urban Routing Be
 
 ### ST. ARNOULT
 
-| ALGORITHM     | t^{PRE}  | t^{TEST} | t_{CAV} | t_{HDV}^{POST} | c_{ALL} | c_{HDV} | c_{CAV} | $\delta$ V  | ∆ L  | WR |
+| ALGORITHM     | $t^{PRE}$  | $t^{TEST}$ | $t_{CAV}$ | $t_{HDV}^{POST}$ | $c_{ALL}$ | $c_{HDV}$ | $c_{CAV}$ | $\Delta$ V  | $\Delta$ L  | WR |
 |---------------|--------|-------------|------|-----|------|------|------|-----|-----|----|
 | IPPO          | 3.15   | 3.28        | 3.34 | 3.24| 0.6  | 0.12 | 1.33 | -0.31 | 0.05 | 0% |
 | IQL           | 3.15   | 3.34        | 3.49 | 3.24| 0.66 | 0.14 | 1.44 | -0.42 | 0.08 | 0% |
@@ -34,7 +34,7 @@ Repository provides all results produced in the experiment from Urban Routing Be
 
 ### PROVINS
 
-| NET ALGORITHM | PRE t | TEST tCAV t | POST | HDV | cALL | cHDV | cCAV | ∆V | ∆L | WR |
+| ALGORITHM     | $t^{PRE}$  | $t^{TEST}$ | $t_{CAV}$ | $t_{HDV}^{POST}$ | $c_{ALL}$ | $c_{HDV}$ | $c_{CAV}$ | $\Delta$ V  | $\Delta$ L  | WR |
 |---------------|--------|-------------|------|-----|------|------|------|-----|-----|----|
 | IPPO          | 2.8    | 2.88        | 2.92 | 2.85| 0.53 | 0.26 | 0.93 | -0.4  | 0.03 | 0% |
 | IQL           | 2.8    | 2.92        | 3.03 | 2.84| 1.48 | 0.98 | 2.23 | -0.52 | 0.06 | 0% |
@@ -46,7 +46,7 @@ Repository provides all results produced in the experiment from Urban Routing Be
 
 ### INGOLSTADT
 
-| NET ALGORITHM | PRE t | TEST tCAV t | POST | HDV | cALL | cHDV | cCAV | ∆V | ∆L | WR |
+| ALGORITHM     | $t^{PRE}$  | $t^{TEST}$ | $t_{CAV}$ | $t_{HDV}^{POST}$ | $c_{ALL}$ | $c_{HDV}$ | $c_{CAV}$ | $\Delta$ V  | $\Delta$ L  | WR |
 |---------------|--------|-------------|------|-----|------|------|------|-----|-----|----|
 | IPPO          | 4.21   | 4.4         | 4.72 | 4.18| 1.76 | 1.22 | 2.56 | -0.37 | 0.07 | 0% |
 | IQL           | 4.21   | 4.45        | 4.8  | 4.22| 1.68 | 1.08 | 2.59 | -0.62 | 0.07 | 0% |
