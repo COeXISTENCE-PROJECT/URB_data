@@ -99,7 +99,7 @@ import numpy as np
 rcParams['font.family'] = 'Times New Roman'
 
 # Set your actual parent directory here
-parent_dir = os.path.abspath('results/scenario1')
+parent_dir = os.path.abspath('results/scenario2')
 
 # Define suffixes and their readable labels
 group_suffixes = ['_ipp', '_iql', '_map', '_qmi']
@@ -175,16 +175,16 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
             print(idx, folder)
             
             ## Humans 
-            human_run = get_travel_times_by_kind(folder, 'Human')
-            human_slice = human_run[30:39]
-            avg_human_tt = sum(human_slice) / len(human_slice)
-            avg_human_tt_list.append(avg_human_tt)
+            #human_run = get_travel_times_by_kind(folder, 'Human')
+            #human_slice = human_run[30:39]
+            #avg_human_tt = sum(human_slice) / len(human_slice)
+            #avg_human_tt_list.append(avg_human_tt)
             
             ## AVs 
             av_run = get_travel_times_by_kind(folder, 'AV')
             start_index = 40  # AVs appear after episode 40
             av_run = [val if idx >= start_index else np.nan for idx, val in enumerate(av_run)]
-            av_run = [val / avg_human_tt for val in av_run]
+            #av_run = [val / avg_human_tt for val in av_run]
             
             if not av_run:
                 continue
@@ -199,13 +199,13 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
 
 
     # Plot the last human agent with dashed line
-    human_travel_times = [val / avg_human_tt for val in human_run]
-    smooothed_humans = smooth_series(human_travel_times, window=35, valid_start_index=0)
-    x_humans = [i * 5 for i in range(len(smooothed_humans))]
-    ax.plot(x_humans, smooothed_humans, label='Humans', color='salmon', linestyle='-', linewidth=2)
+    #human_travel_times = [val / avg_human_tt for val in human_run]
+    #smooothed_humans = smooth_series(human_travel_times, window=35, valid_start_index=0)
+    #x_humans = [i * 5 for i in range(len(smooothed_humans))]
+    #ax.plot(x_humans, smooothed_humans, label='Humans', color='salmon', linestyle='-', linewidth=2)
 
     # Compute the avg human tt for all the algorithms
-    avg_all_algos_humans_tt = sum(avg_human_tt_list) / len(avg_human_tt_list) 
+    #avg_all_algos_humans_tt = sum(avg_human_tt_list) / len(avg_human_tt_list) 
             
     ### Calculate the baseline lines        
     if city_prefix in baseline_groups:
@@ -215,7 +215,7 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
                 continue
 
             ## Normalize with the avg human travel time of the last episodes folder 
-            av_times = [val / avg_all_algos_humans_tt for val in av_times]
+            #av_times = [val / avg_all_algos_humans_tt for val in av_times]
 
             ## Find the average"""
             average = sum(av_times) / len(av_times) if av_times else float('nan')
@@ -227,7 +227,7 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
             ax.plot(x, label=f'{label} (AV)', **style, linewidth=3)
 
     ##S Add a horizontal line at y=1 
-    ax.axhline(y=1, color='black', linestyle='-', linewidth=2)
+    #ax.axhline(y=1, color='black', linestyle='-', linewidth=2)
 
     #S# Add background colour
     ax.axvspan(0, 200, color='lightgrey', alpha=0.4, label='Human Leaning', zorder=0)
@@ -236,11 +236,11 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
 
     ### Calculate extravaganze points
     if city_prefix == "ing":
-        folder = "results/scenario1_long/" + city_prefix + "_qm2_xl_1/episodes"
+        folder = "results/scenario2_long/" + city_prefix + "_qm2_xl_1/episodes"
     elif city_prefix == "pro":
-        folder = "results/scenario1_long/" + city_prefix + "_qm2_xl_0/episodes"
+        folder = "results/scenario2_long/" + city_prefix + "_qm2_xl_0/episodes"
     else:
-        folder = "results/scenario1_long/" + city_prefix + "_qm2_xl_2/episodes"
+        folder = "results/scenario2_long/" + city_prefix + "_qm2_xl_2/episodes"
 
     #extravaganza = calculate_extravaganza(folder)
     #normalized_extravaganze = extravaganza / avg_all_algos_humans_tt
@@ -250,7 +250,7 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
 
     ### Ticks params and titles
     ax.tick_params(axis='both', labelsize=14)
-    ax.set_yticks([1, 1.1, 1.2])
+    #ax.set_yticks([1, 1.1, 1.2])
     ax.set_title(f"{city_name}", fontsize=20)
     if idx == 1:
         ax.set_xlabel("episodes", fontsize=20)
@@ -268,7 +268,7 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
 
     ### Set y axis label only on the rightest plot
     if i == 0:
-        ax.set_ylabel("Mean travel time \nrelative to human baseline", fontsize=20)
+        ax.set_ylabel("Mean travel time", fontsize=20)
         """phases_legend = [
             Patch(facecolor='none', edgecolor='none', label='Phases:'),  # header
             Patch(facecolor='lightgrey', alpha=0.4, label='   Human learning'),
@@ -346,4 +346,4 @@ legend_elements = [
     Line2D([0], [0], color='navy', lw=2, label='QMIX')
 ]"""
 
-fig.savefig('100_per_avs.png', dpi=300, bbox_inches='tight')  # Change filename and format as needed
+fig.savefig('images/100_per_avs.png', dpi=300, bbox_inches='tight')  # Change filename and format as needed
