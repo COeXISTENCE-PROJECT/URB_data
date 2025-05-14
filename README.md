@@ -22,7 +22,7 @@ Repository provides all results produced in the experiment from Urban Routing Be
 
 ### ST. ARNOULT
 
-| NET ALGORITHM | PRE t | TEST tCAV t | POST | HDV | cALL | cHDV | cCAV | ∆V | ∆L | WR |
+| ALGORITHM     | t^{PRE}  | t^{TEST} | t_{CAV} | t_{HDV}^{POST} | c_{ALL} | c_{HDV} | c_{CAV} | $\delta$ V  | ∆ L  | WR |
 |---------------|--------|-------------|------|-----|------|------|------|-----|-----|----|
 | IPPO          | 3.15   | 3.28        | 3.34 | 3.24| 0.6  | 0.12 | 1.33 | -0.31 | 0.05 | 0% |
 | IQL           | 3.15   | 3.34        | 3.49 | 3.24| 0.66 | 0.14 | 1.44 | -0.42 | 0.08 | 0% |
