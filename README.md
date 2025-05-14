@@ -19,10 +19,8 @@ Repository provides all results produced in the experiment from Urban Routing Be
 
 ## Scenario1 - 40% AVs
 
-Figure 3 and Table 1
-
 <p align="center">
-  <img src="images/urb.png" align="center" width="30%"/>
+  <img src="images/final_travel_times_one_replic_legend_out.png" align="center" width="75%"/>
 </p>
 
 ## Scenario1 - 40% AVs and longer training
@@ -45,20 +43,20 @@ Figure ??
 
 ### Selfish AVs versus adapting humans in Nangis
 
-<p align="left">
-  <img src="results/demonstrative/nan_ipp_ada/plots/travel_times.png" align="left" width="75%"/>
+<p align="center">
+  <img src="results/demonstrative/nan_ipp_ada/plots/travel_times.png" align="center" width="75%"/>
 </p>
 
 ### Malicious AVs in Nemours
 
 <p align="center">
-  <img src="results/demonstrative/nem_qmi_mal/plots/travel_times.png" align="left" width="75%"/>
+  <img src="results/demonstrative/nem_qmi_mal/plots/travel_times.png" align="center" width="75%"/>
 </p>
 
 ### Altruistic AVs in Gretz-Armainvillers
 
 <p align="center">
-  <img src="results/demonstrative/gre_vdn_alt/plots/travel_times.png" align="left" width="75%"/>
+  <img src="results/demonstrative/gre_vdn_alt/plots/travel_times.png" align="center" width="75%"/>
 </p>
 
 ## Hyperparameter tuning
