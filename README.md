@@ -31,14 +31,6 @@ Figure 3 (triangular markers)
   <img src="images/urb.png" align="center" width="30%"/>
 </p>
 
-## Scenario2 - 100% AVs
-
-Figure ??
-
-<p align="center">
-  <img src="images/urb.png" align="center" width="30%"/>
-</p>
-
 ## Demonstrative
 
 ### Selfish AVs versus adapting humans in Nangis
@@ -57,14 +49,6 @@ Figure ??
 
 <p align="center">
   <img src="results/demonstrative/gre_vdn_alt/plots/travel_times.png" align="center" width="75%"/>
-</p>
-
-## Hyperparameter tuning
-
-TO FILL
-
-<p align="center">
-  <img src="images/urb.png" align="center" width="75%"/>
 </p>
 
 ## Metrics for Scenario 1
