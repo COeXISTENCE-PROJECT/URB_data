@@ -170,6 +170,9 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
 
         # Store all normalized AV runs for the current algorithm
         av_normalized_runs = []
+        avg_travel_times_seeds = []
+        x_list = []
+        av_smoothed_list = []
 
         for idx, folder in enumerate(folders):
             print(idx, folder)
@@ -192,8 +195,16 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
             av_smoothed = smooth_series(av_run, window=35, valid_start_index=0)
             x = [i * 5 for i in range(len(av_smoothed))]
 
-            if idx == 1:
-                ax.plot(x, av_smoothed, label=f'{label} (AV)', color=color, linewidth=2)
+            x_list.append(x)
+            av_smoothed_list.append(av_smoothed)
+
+            avg_travel_times_seeds.append(sum(av_smoothed) / len(av_smoothed))
+
+            if idx == 2:
+                min_index = avg_travel_times_seeds.index(min(avg_travel_times_seeds))                
+                #print(len(x_list[min_index]), len(av_smoothed))
+
+                ax.plot(x_list[min_index], av_smoothed_list[min_index], label=f'{label} (AV)', color=color, linewidth=2)
             #else:
             #    ax.plot(x, av_smoothed, color=color, linewidth=1, alpha=0.5)
 
