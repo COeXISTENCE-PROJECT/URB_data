@@ -112,7 +112,7 @@ suffix_labels = {
 
 # Define city prefixes and their readable names
 city_prefixes = OrderedDict([
-    ('sai', 'Saint Arnoult (222 AVs)'),
+    ('sai', 'St. Arnoult (222 AVs)'),
 ])
 
 
@@ -263,8 +263,8 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
     ax.tick_params(axis='both', labelsize=14)
     #ax.set_yticks([1, 1.1, 1.2])
     ax.set_title(f"{city_name}", fontsize=20)
-    if idx == 1:
-        ax.set_xlabel("episodes", fontsize=20)
+    
+    ax.set_xlabel("episodes", fontsize=20)
 
 
     #ax.set_xticks([0, 1000, 2000, 3000, 4000, 5000, 6000, 6800])

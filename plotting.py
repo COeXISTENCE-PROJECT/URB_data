@@ -9,6 +9,7 @@ from collections import OrderedDict, defaultdict
 import warnings
 from matplotlib.patches import Patch
 from matplotlib.lines import Line2D
+import math
 warnings.filterwarnings("ignore", category=RuntimeWarning, message="Mean of empty slice")
 
 def smooth_series(series, window=3, valid_start_index=0):
@@ -112,7 +113,7 @@ suffix_labels = {
 
 # Define city prefixes and their readable names
 city_prefixes = OrderedDict([
-    ('sai', 'Saint Arnoult (89 AVs)'),
+    ('sai', 'St. Arnoult (89 AVs)'),
     ('pro', 'Provins (210 AVs)'),
     ('ing', 'Ingolstadt (415 AVs)')
 ])
@@ -168,11 +169,15 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
     avg_human_tt_list = []
     print(city_prefix)
     for suffix, folders in alg_groups.items():
+        print(suffix)
         color = color_map.get(suffix, None)
         label = suffix_labels.get(suffix, suffix.upper())
 
         # Store all normalized AV runs for the current algorithm
         av_normalized_runs = []
+        avg_travel_times_seeds = []
+        x_list = []
+        av_smoothed_list = []
 
         for idx, folder in enumerate(folders):
             print(idx, folder)
@@ -195,8 +200,28 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
             av_smoothed = smooth_series(av_run, window=35, valid_start_index=0)
             x = [i * 5 for i in range(len(av_smoothed))]
 
-            if idx == 1:
-                ax.plot(x, av_smoothed, label=f'{label} (AV)', color=color, linewidth=2)
+            x_list.append(x)
+            av_smoothed_list.append(av_smoothed)
+            #print("av smoothed are: ", av_smoothed_list)
+
+            flattened = np.concatenate(av_smoothed_list)
+
+            # Remove NaNs
+            cleaned_av_smoothed = flattened[~np.isnan(flattened)]
+            avg_travel_times_seeds.append(sum(cleaned_av_smoothed) / len(cleaned_av_smoothed))
+
+            if idx == 2:
+                ## Find which seed has smaller avg travel time and plot that.
+                min_index = avg_travel_times_seeds.index(min(avg_travel_times_seeds))    
+                #print("Min index is: ", min_index, "\n\n")  
+                #print("Average travel time lists are: ", avg_travel_times_seeds, "\n\n")          
+                #print(len(x_list[min_index]), len(av_smoothed))
+
+                ax.plot(x_list[min_index], av_smoothed_list[min_index], label=f'{label} (AV)', color=color, linewidth=2)
+
+            """if idx == 1:
+                ax.plot(x, av_smoothed, label=f'{label} (AV)', color=color, linewidth=2)"""
+                #ax.set_xlabel("episodes", fontsize=20)
             #else:
             #    ax.plot(x, av_smoothed, color=color, linewidth=1, alpha=0.5)
 
@@ -255,13 +280,13 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
     ax.tick_params(axis='both', labelsize=14)
     ax.set_yticks([1, 1.1, 1.2])
     ax.set_title(f"{city_name}", fontsize=20)
-    if idx == 1:
-        ax.set_xlabel("episodes", fontsize=20)
-
+    
 
     #ax.set_xticks([0, 1000, 2000, 3000, 4000, 5000, 6000, 6800])
     ax.set_xlim(0, 6400)
     #ax.set_xticklabels(['0', '1000', '2000', '3000', '4000', '5000', '6000', '...20300'])
+    if i == 1:
+        ax.set_xlabel("episodes", fontsize=20)
 
     ### Adjust grid params
     ax.minorticks_on()
@@ -318,7 +343,7 @@ legend_elements = [
     Line2D([0], [0], color='peru', lw=2, label='MAPPO'),
     Patch(facecolor='none', edgecolor='none', label=' '),
     Line2D([0], [0], color='navy', lw=2, label='QMIX'),
-    Line2D([0], [0], marker='v', color='navy', linestyle='None', markersize=10, label='Qmix longer training'),
+    Line2D([0], [0], marker='v', color='navy', linestyle='None', markersize=10, label='QMIX longer training'),
     Patch(facecolor='none', edgecolor='none', label=' '),
 
     # Column 2: Baselines
