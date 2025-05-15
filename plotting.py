@@ -249,7 +249,7 @@ for i, (city_prefix, alg_groups) in enumerate(city_groups.items()):
     normalized_extravaganze = extravaganza / avg_all_algos_humans_tt
 
     ### Add extravaganze points
-    ax.plot(6300, normalized_extravaganze, marker='v', color='navy', label='Qmix longer training', markersize=10)
+    ax.plot(6300, normalized_extravaganze, marker='v', color='navy', label='QMIX longer training', markersize=10)
 
     ### Ticks params and titles
     ax.tick_params(axis='both', labelsize=14)
@@ -335,7 +335,7 @@ legend_elements = [
 ]
 
 #fig.legend(handles=legend_elements, loc='lower center', bbox_to_anchor=(0.5, 1.05), ncol=4, fontsize=12, frameon=False)
-fig.legend(handles=legend_elements, loc='upper center', bbox_to_anchor=(0.5, -0.1), ncol=4, fontsize=12, frameon=False)
+fig.legend(handles=legend_elements, loc='upper center', bbox_to_anchor=(0.5, 0), ncol=4, fontsize=12, frameon=False)
 
 ## Add the legend on top
 """legend_elements = [
@@ -349,4 +349,4 @@ fig.legend(handles=legend_elements, loc='upper center', bbox_to_anchor=(0.5, -0.
     Line2D([0], [0], color='navy', lw=2, label='QMIX')
 ]"""
 
-fig.savefig('my_figure.png', dpi=300, bbox_inches='tight')  # Change filename and format as needed
+fig.savefig('images/my_figure.png', dpi=300, bbox_inches='tight')  # Change filename and format as needed
