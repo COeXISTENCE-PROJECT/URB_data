@@ -82,8 +82,6 @@ Repository provides all results produced in the experiment from Urban Routing Be
 
 ## Metrics for Scenario 2 
 
-DATA TO CHANGE
-
 ### ST. ARNOULT
 
 | ALGORITHM     | $t^{PRE}$  | $t^{TEST}$ | $t_{CAV}$ | $t_{HDV}^{POST}$ | $c_{ALL}$ | $c_{HDV}$ | $c_{CAV}$ | $\Delta$ V  | $\Delta$ L  | WR |
