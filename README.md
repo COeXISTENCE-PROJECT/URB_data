@@ -2,9 +2,9 @@
   <img src="images/urb.png" align="center" width="30%"/>
 </p>
 
-# Urban Routing Benchmark Data: Dataset for benchmarking MARL algorithms on the fleet routing tasks
+# Data for URB: Urban Routing Benchmark
 
-Repository provides all results produced in the experiment from Urban Routing Benchmark paper. Each subdirectory of the `results` directory, classifies different experimental settings and includes the following scenarios and metrics
+Repository provides all results produced in the experiment from Urban Routing Benchmark paper. Each subdirectory of the `results` directory, classifies different experimental settings and includes the following scenarios and metrics.
 
 
 | Directory name    | Experiment                  |
@@ -15,6 +15,8 @@ Repository provides all results produced in the experiment from Urban Routing Be
 | demonstrative     | Demonstrative               |
 | hyperparam_search | Hyperparameter tuning       |
 | res_scenario1     | Metrics for Scenario 1      |
+
+Each experiment folder is named semantically (after the used network, algorithm, and random seed), and include an `exp_config.json` file (that documents all the parameterization used in that experiment).
 
 ## Scenario1 - 40% AVs
 
