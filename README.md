@@ -22,24 +22,30 @@ Repository provides all results produced in the experiment from Urban Routing Be
   <img src="images/final_travel_times_one_replic_legend_out.png" align="center" width="75%"/>
 </p>
 
+## Scenario2 - 100% AVs in St. Arnoult
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/COeXISTENCE-PROJECT/URB/refs/heads/main/docs/100_per_avs.png" align="center" width="50%"/>
+</p>
+
 ## Demonstrative
 
 ### Selfish AVs versus adapting humans in Nangis
 
 <p align="center">
-  <img src="results/demonstrative/nan_ipp_ada/plots/travel_times.png" align="center" width="75%"/>
+  <img src="results/demonstrative/nan_ipp_ada/plots/travel_times.png" align="center" width="40%"/>
 </p>
 
 ### Malicious AVs in Nemours
 
 <p align="center">
-  <img src="results/demonstrative/nem_qmi_mal/plots/travel_times.png" align="center" width="75%"/>
+  <img src="results/demonstrative/nem_qmi_mal/plots/travel_times.png" align="center" width="40%"/>
 </p>
 
 ### Altruistic AVs in Gretz-Armainvillers
 
 <p align="center">
-  <img src="results/demonstrative/gre_vdn_alt/plots/travel_times.png" align="center" width="75%"/>
+  <img src="results/demonstrative/gre_vdn_alt/plots/travel_times.png" align="center" width="40%"/>
 </p>
 
 ## Metrics for Scenario 1
@@ -91,10 +97,3 @@ Repository provides all results produced in the experiment from Urban Routing Be
 | MAPPO         | 3.15   | 3.65        | 3.65 | N/A | 0.65 | 0.0 | 0.65 | -0.7 | 0.21 | 0% |
 | QMIX          | 3.15   | 3.58        | 3.58 | N/A | 0.42 | 0.0 | 0.42 | -0.63  | 0.18 | 0% |
 | HUMAN         | 3.15   | 3.15        | N/A  | 3.15| 0.0  | 0.0  | 0.0  | 0     | 0.0  | 100% |
-
-### PROVINS
-
-| ALGORITHM     | $t^{PRE}$  | $t^{TEST}$ | $t_{CAV}$ | $t_{HDV}^{POST}$ | $c_{ALL}$ | $c_{HDV}$ | $c_{CAV}$ | $\Delta$ V  | $\Delta$ L  | WR |
-|---------------|--------|-------------|------|-----|------|------|------|-----|-----|----|
-| QMIX          | 2.8    | 3.39        | 3.39 | N/A | 2.44 | 0.0  | 2.44 | -0.52  | -0.01 | 0% |
-| HUMAN         | 2.8    | 2.8         | N/A  | 2.8 | 0.0  | 0.0  | 0.0  | 0.0   | 0.0  | 100% |
