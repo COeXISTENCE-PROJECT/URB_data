@@ -1,3 +1,12 @@
+[![Status: Archived](https://img.shields.io/badge/Status-Archived-inactive)](#)
+[![DOI: 10.5281/zenodo.17317056](https://zenodo.org/badge/DOI/10.5281/zenodo.17317056.svg)](https://doi.org/10.5281/zenodo.17317056)
+[![Data on Zenodo](https://img.shields.io/badge/Data-Zenodo-blue?logo=zenodo)](https://doi.org/10.5281/zenodo.17317056)
+
+> [!WARNING]
+> **Repository archived: Data moved to Zenodo**
+> - This repository is not maintained anymore; the data has been updated and now hosted on Zenodo at https://doi.org/10.5281/zenodo.17317056
+> - This repo remains an archive for consistency with older versions of the publication. For complete experiment data and up-to-date plotting scripts, please refer to the Zenodo record above.
+
 <p align="center">
   <img src="images/urb.png" align="center" width="30%"/>
 </p>
